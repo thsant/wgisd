@@ -1,0 +1,68 @@
+Embrapa Wine Grape Instance Segmentation Dataset - Embrapa WGISD
+
+* Motivation for Dataset Creation
+
+** Why was the dataset created?
+
+** What (other) tasks could the dataset be used for?
+
+** Has the dataset been used for any tasks already?
+
+** Who funded the creation of the dataset?
+
+* Dataset Composition
+
+** What are the instances?
+
+** Are relationships between instances made explicit in the data?
+
+** How many instances of each type are there?
+
+300 images, 1898 bunches, 5 varieties
+
+| Code  | Variety              |       Date | N. Images | N. bunches |
+|-------+----------------------+------------+-----------+------------|
+| CDY   | /Chardonnay/         | 2018-04-27 |        65 |        273 |
+| CFR   | /Cabernet Franc/     | 2018-04-27 |        65 |        467 |
+| CSV   | /Cabernet Sauvignon/ | 2018-04-27 |        57 |        296 |
+| SVB   | /Sauvignon Blanc/    | 2018-04-27 |        65 |        597 |
+| SYH   | /Syrah/              | 2017-04-27 |        48 |        265 |
+|-------+----------------------+------------+-----------+------------|
+| Total |                      |            |       300 |       1898 |
+
+** What data does each instance consist of?
+
+** Is everything included or does the data rely on external resources?
+
+** Are there recommended data splits or evaluation measures?
+
+** What experiments were initially run on this dataset?
+
+** Any other comments?
+
+* Data Collection Process
+
+** How was the data collected?
+
+** Who was involved in the data collection process?
+
+** How was the data associated with each instance acquired?
+
+** Does the dataset contain all possible instances?
+
+** If the dataset is a sample, then what is the population?
+
+** Is there information missing from the dataset and why?
+
+** Are there any known errors, sources of noise, or redundancies in the data?
+
+** Any other comments?
+
+* Data Preprocessing
+
+* Datset Distribution
+
+* Dataset Maintenance
+
+* Legal & Ethical Considerations
+
