@@ -4,15 +4,40 @@ Embrapa Wine Grape Instance Segmentation Dataset - Embrapa WGISD
 
 ** Why was the dataset created?
 
+Embrapa WGISD (/Wine Grape Instance Segmentation Dataset/) was created
+to provide images and annotation to study /object detection and
+instance segmentation/ in image-based monitoring and field robotics
+for viticulture. It provides instances from five different grape
+varieties taken on field. These instances shows variance in grape
+pose, illumination and focus, including genetic and phenological
+variations as shape, color and compactness. 
+
 ** What (other) tasks could the dataset be used for?
+
+Possible uses include relaxations of the instance segmentation
+problem: classification (Is a grape in the image?), semantic
+segmentation (What are the "grape pixels" in the image?), object
+detection (Where are the grapes in the image?). The WGISD can be also
+in grape variety identification.
 
 ** Has the dataset been used for any tasks already?
 
 ** Who funded the creation of the dataset?
 
+The building of the WGISD dataset was supported by the Embrapa SEG
+Project 01.14.09.001.05.04, /Image-based metrology for Precision
+Agriculture and Phenotyping/, and the CNPq PIBIC Program.
+
 * Dataset Composition
 
 ** What are the instances?
+
+Each instance consists in a 2048 x 1365 RGB image image and an
+annotation describing grape bunches locations as bounding boxes. A 
+subset of the instances also contains binary masks identifying the
+pixels belonging to each grape bunch. Each image presents at least one
+grape bunch. Some grape bunches can appear far at the background and
+should be ignored.
 
 ** Are relationships between instances made explicit in the data?
 
