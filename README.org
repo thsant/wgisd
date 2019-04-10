@@ -32,34 +32,92 @@ Agriculture and Phenotyping/, and the CNPq PIBIC Program.
 
 ** What are the instances?
 
-Each instance consists in a 2048 x 1365 RGB image image and an
-annotation describing grape bunches locations as bounding boxes. A 
-subset of the instances also contains binary masks identifying the
-pixels belonging to each grape bunch. Each image presents at least one
-grape bunch. Some grape bunches can appear far at the background and
-should be ignored.
+Each instance consists in a RGB image  and an annotation describing
+grape bunches locations as bounding boxes. A subset of the instances
+also contains binary masks identifying the pixels belonging to each
+grape bunch. Each image presents at least one grape bunch. Some grape
+bunches can appear far at the background and should be ignored. 
 
 ** Are relationships between instances made explicit in the data?
 
+File names prefixes identify the variety observed in the instance:
+
+| Prefix | Variety              |
+|--------+----------------------|
+| CDY    | /Chardonnay/         |
+| CFR    | /Cabernet Franc/     |
+| CSV    | /Cabernet Sauvignon/ |
+| SVB    | /Sauvignon Blanc/    |
+| SYH    | /Syrah/              |
+
 ** How many instances of each type are there?
 
-300 images, 1898 bunches, 5 varieties
+The dataset consists of 300 images containing 4,398 grape bunches
+identified by bounding boxes. A subset of 125 images also contains
+binary masks identifying the pixels of each bunch. That means that
+from the 4,398 bunches, 1,898 of them presents binary masks for
+instance segmentation.
 
-| Code  | Variety              |       Date | N. Images | N. bunches |
-|-------+----------------------+------------+-----------+------------|
-| CDY   | /Chardonnay/         | 2018-04-27 |        65 |        273 |
-| CFR   | /Cabernet Franc/     | 2018-04-27 |        65 |        467 |
-| CSV   | /Cabernet Sauvignon/ | 2018-04-27 |        57 |        296 |
-| SVB   | /Sauvignon Blanc/    | 2018-04-27 |        65 |        597 |
-| SYH   | /Syrah/              | 2017-04-27 |        48 |        265 |
-|-------+----------------------+------------+-----------+------------|
-| Total |                      |            |       300 |       1898 |
+| Prefix | Variety              |       Date | Instances | Boxed bunches | Masked bunches |
+|--------+----------------------+------------+-----------+---------------+----------------|
+| CDY    | /Chardonnay/         | 2018-04-27 |        65 |           838 |            242 |
+| CFR    | /Cabernet Franc/     | 2018-04-27 |        65 |          1048 |            460 |
+| CSV    | /Cabernet Sauvignon/ | 2018-04-27 |        57 |           640 |            290 |
+| SVB    | /Sauvignon Blanc/    | 2018-04-27 |        65 |          1313 |            586 |
+| SYH    | /Syrah/              | 2017-04-27 |        48 |           559 |            256 |
+|--------+----------------------+------------+-----------+---------------+----------------|
+| Total  |                      |            |       300 |          4398 |           1834 |
+|        |                      |            |           |               |                |
+
 
 ** What data does each instance consist of?
 
+Each instance contains a 2048 x 1365 pixels RGB image and a text file
+containing one bounding box description per line. These text files
+follows the "YOLO format":
+
+class cx cy w h
+
+/class/ is an integer defining the object class - the dataset presents
+only the grape class that is numbered 0, so every line starts with 
+this "class zero" indicator. The center of the bounding box is the point
+(cx, cy), represented as float values because this format normalize
+the coordinates by the image dimensions. To get the absolute position,
+use  (2048 * cx, 1365 * cy). The bounding box dimensions are given by
+w and h, also normalized by the image size. 
+
+The instances presenting mask data for instance segmentation contain
+files presenting the .npz extension. These files are compressed
+archives for Numpy n-dimensional arrays. Each array is a 1,365 x 2,048
+x n_bunches three-dimensional array where n_bunches is the number of
+grape bunches observed in the image. After assigning the Numpy array
+to a variable M, the mask for the i-th grape bunch can be found in
+M[:,:,i]. The i-th mask corresponds to the i-th line in the bounding
+boxes file.
+
+The dataset also includes the original image files, presenting
+resolutions bigger than 2048 x 1365 pixels. The normalized annotation
+for bounding boxes allows easy identification of bunches in the
+original images, but the mask data will need proper rescaling by 
+users that wish work in the original full resolution. 
+
 ** Is everything included or does the data rely on external resources?
 
+Everything is included in the dataset.
+
 ** Are there recommended data splits or evaluation measures?
+
+|           | Images | Bounding boxes | Masks |
+|-----------+--------+----------------+-------|
+| Train/Val |    240 |           3555 |  1402 |
+| Test      |     60 |            843 |   432 |
+|-----------+--------+----------------+-------|
+| Total     |    300 |           4398 |  1834 |
+
+
+- Precision/recall
+- AP
+- AP50
 
 ** What experiments were initially run on this dataset?
 
@@ -86,8 +144,8 @@ should be ignored.
 * Data Preprocessing
 
 * Datset Distribution
-
+  
 * Dataset Maintenance
-
+  
 * Legal & Ethical Considerations
 
