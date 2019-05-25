@@ -67,8 +67,6 @@ instance segmentation.
 | SYH    | /Syrah/              | 2017-04-27 |        48 |           559 |            256 |
 |--------+----------------------+------------+-----------+---------------+----------------|
 | Total  |                      |            |       300 |          4398 |           1834 |
-|        |                      |            |           |               |                |
-
 
 ** What data does each instance consist of?
 
@@ -106,6 +104,10 @@ users that wish work in the original full resolution.
 Everything is included in the dataset.
 
 ** Are there recommended data splits or evaluation measures?
+
+The dataset comes with specified train/test splits. The splits are
+found in lists stored as text files. There are also lists referring
+only to instances presenting binary masks.
 
 |           | Images | Bounding boxes | Masks |
 |-----------+--------+----------------+-------|
