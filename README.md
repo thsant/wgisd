@@ -220,7 +220,7 @@ The dataset was released in July, 2019.
 
 ### What license (if any) is it distributed under?
 
-The data is released under **Creative Commons BY-NC 4.0 (Attribution-NonCommercial 4.0 International license)**. 
+The data is released under [**Creative Commons BY-NC 4.0 (Attribution-NonCommercial 4.0 International license)**](https://creativecommons.org/licenses/by-nc/4.0/). 
 There is a request to cite the corresponding paper if the dataset is used. For
 commercial use, contact Embrapa Agricultural Informatics business office.
 
