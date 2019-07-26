@@ -1,14 +1,13 @@
-Embrapa Wine Grape Instance Segmentation Dataset – Embrapa WGISD {#appendix:WGISD}
+Embrapa Wine Grape Instance Segmentation Dataset – Embrapa WGISD 
 ================================================================
 
 This is a detailed description of the dataset, a
-*datasheet for the dataset* as proposed by Gebru [*et al.*]{}
-[@Gebru2018].
+*datasheet for the dataset* as proposed by [Gebru *et al.*](https://arxiv.org/abs/1803.09010)
 
-Motivation for Dataset Creation {#sec:org576a247}
+Motivation for Dataset Creation
 -------------------------------
 
-### Why was the dataset created? {#sec:org6e480f9}
+### Why was the dataset created?
 
 Embrapa WGISD (*Wine Grape Instance Segmentation Dataset*) was created
 to provide images and annotation to study *object detection and instance
@@ -18,25 +17,25 @@ taken on field. These instances shows variance in grape pose,
 illumination and focus, including genetic and phenological variations
 such as shape, color and compactness.
 
-### What (other) tasks could the dataset be used for? {#sec:orgfe05c1f}
+### What (other) tasks could the dataset be used for?
 
 Possible uses include relaxations of the instance segmentation problem:
 classification (Is a grape in the image?), semantic segmentation (What
-are the “grape pixels” in the image?), and object detection (Where are
+are the "grape pixels" in the image?), and object detection (Where are
 the grapes in the image?). The WGISD can also be used in grape variety
 identification.
 
-### Who funded the creation of the dataset? {#sec:org7c9950e}
+### Who funded the creation of the dataset?
 
 The building of the WGISD dataset was supported by the Embrapa SEG
 Project 01.14.09.001.05.04, *Image-based metrology for Precision
 Agriculture and Phenotyping*, and the CNPq PIBIC Program (grants
 161165/2017-6 and 125044/2018-6).
 
-Dataset Composition {#sec:org9163256}
+Dataset Composition 
 -------------------
 
-### What are the instances? {#sec:org2c40949}
+### What are the instances? 
 
 Each instance consists in a RGB image and an annotation describing grape
 clusters locations as bounding boxes. A subset of the instances also
@@ -44,7 +43,7 @@ contains binary masks identifying the pixels belonging to each grape
 cluster. Each image presents at least one grape cluster. Some grape
 clusters can appear far at the background and should be ignored.
 
-### Are relationships between instances made explicit in the data? {#sec:org30a40eb}
+### Are relationships between instances made explicit in the data? 
 
 File names prefixes identify the variety observed in the instance.
 
@@ -58,7 +57,7 @@ File names prefixes identify the variety observed in the instance.
 
   : File prefixes and grape varieties.
 
-### How many instances of each type are there? {#sec:orgd3b5757}
+### How many instances of each type are there? 
 
 The dataset consists of 300 images containing 4,432 grape clusters
 identified by bounding boxes. A subset of 137 images also contains
@@ -80,11 +79,11 @@ segmentation, as summarized in Table \[table:GenInfoData\].
   number of images (instances) and the identified grapes
   clusters.[]{data-label="table:GenInfoData"}
 
-### What data does each instance consist of? {#sec:org3a7677d}
+### What data does each instance consist of? 
 
 Each instance contains a 8-bits RGB image and a text file containing one
-bounding box description per line. These text files follows the “YOLO
-format” [@Redmon2016]:
+bounding box description per line. These text files follows the "YOLO
+format"
 
     CLASS CX CY W H
 
@@ -111,11 +110,11 @@ easy identification of clusters in the original images, but the mask
 data will need to be properly rescaled if users wish to work on the
 original full resolution.
 
-### Is everything included or does the data rely on external resources? {#sec:org9af0525}
+### Is everything included or does the data rely on external resources? 
 
 Everything is included in the dataset.
 
-### Are there recommended data splits or evaluation measures? {#sec:org4be082b}
+### Are there recommended data splits or evaluation measures? 
 
 The dataset comes with specified train/test splits. The splits are found
 in lists stored as text files. There are also lists referring only to
@@ -135,12 +134,12 @@ Standard measures from the information retrieval and computer vision
 literature should be employed: precision and recall, $F_1$ score and
 average precision as seen in COCO [@MSCOCO] and Pascal VOC [@PascalVOC].
 
-### What experiments were initially run on this dataset? {#sec:org4b2d134}
+### What experiments were initially run on this dataset? 
 
 To the present date, this work describe the first experiments run on
 this dataset.
 
-Data Collection Process {#sec:orgb6d3e5e}
+Data Collection Process 
 -----------------------
 
 ### How was the data collected?
@@ -172,7 +171,7 @@ performed the annotation.
 ### How was the data associated with each instance acquired?
 
 The rectangular bounding boxes identifying the grape clusters were
-annotated using the `labelImg` tool[^5]. The clusters can be under
+annotated using the [`labelImg` tool](https://github.com/tzutalin/labelImg). The clusters can be under
 severe occlusion by leaves, trunks or other clusters. Considering the
 absence of 3-D data and on-site annotation, the clusters locations had
 to be defined using only a single-view image, so some clusters could be
@@ -245,8 +244,8 @@ Dataset Maintenance
 ### Who is supporting/hosting/maintaining the dataset?
 
 The dataset is hosted at Embrapa Agricultural Informatics and all
-comments or requests can be sent to Thiago T. Santos at
-`thiago.santos@embrapa.br` (maintainer).
+comments or requests can be sent to [Thiago T. Santos](https://github.com/thsant)
+(maintainer).
 
 ### Will the dataset be updated?
 
@@ -263,17 +262,3 @@ The maintainers and their institutions are *exempt from any liability,
 judicial or extrajudicial, for any losses or damages arising from the
 use of the data contained in the image database*.
 
-[^1]: some link
-
-[^2]: Similar to “pepper” noise – see `imgaug` documentation for details
-    [@imgaug].
-
-[^3]: The AP summarizes the shape of the precision/recall curve, and it
-    is defined as the mean precision at a set of equally spaced recall
-    levels. See the Pascal VOC paper for details [@PascalVOC].
-
-[^4]: <https://youtu.be/xkAtVzCIUD4>. Note the video is edited to a 4
-    frames/second rate to allow the viewer follow the tracks more
-    easily.
-
-[^5]: <https://github.com/tzutalin/labelImg>
