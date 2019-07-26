@@ -47,15 +47,13 @@ clusters can appear far at the background and should be ignored.
 
 File names prefixes identify the variety observed in the instance.
 
-  Prefix   Variety
-  -------- ----------------------
-  CDY      *Chardonnay*
-  CFR      *Cabernet Franc*
-  CSV      *Cabernet Sauvignon*
-  SVB      *Sauvignon Blanc*
-  SYH      *Syrah*
-
-  : File prefixes and grape varieties.
+| Prefix   |      Variety        |
+| --- | --- |
+|  CDY     | *Chardonnay*        |
+|  CFR     | *Cabernet Franc*    |
+|  CSV     | *Cabernet Sauvignon*|
+|  SVB     | *Sauvignon Blanc*   |
+|  SYH     | *Syrah*             |
 
 ### How many instances of each type are there? 
 
@@ -65,19 +63,16 @@ binary masks identifying the pixels of each cluster. It means that from
 the 4,432 clusters, 2,020 of them presents binary masks for instance
 segmentation, as summarized in Table \[table:GenInfoData\].
 
-  Prefix   Variety                        Date   Images   Boxed clusters   Masked clusters
-  -------- ---------------------- ------------ -------- ---------------- -----------------
-  CDY      *Chardonnay*             2018-04-27       65              840               308
-  CFR      *Cabernet Franc*         2018-04-27       65            1,069               513
-  CSV      *Cabernet Sauvignon*     2018-04-27       57              643               306
-  SVB      *Sauvignon Blanc*        2018-04-27       65            1,317               608
-  SYH      *Syrah*                  2017-04-27       48              563               285
-  Total                                             300            4,432             2,020
+  |Prefix |  Variety |                       Date |  Images  | Boxed clusters  | Masked clusters|
+  | ---   | ---      | ---                        | ---      | ---             | --- |
+  |CDY |     *Chardonnay*          |   2018-04-27   |    65  |            840  |             308|
+  |CFR  |    *Cabernet Franc*      |   2018-04-27   |    65  |          1,069  |             513|
+  |CSV   |   *Cabernet Sauvignon*  |   2018-04-27   |    57  |            643  |             306|
+  |SVB    |  *Sauvignon Blanc*     |   2018-04-27   |    65  |          1,317  |             608|
+  |SYH     | *Syrah*               |   2017-04-27   |    48  |            563  |             285|
+  |Total    |                      |                |   300  |          4,432  |           2,020|
 
-  : General information about the dataset: the grape varieties and the
-  associated identifying prefix, the date of image capture on field,
-  number of images (instances) and the identified grapes
-  clusters.[]{data-label="table:GenInfoData"}
+  *General information about the dataset: the grape varieties and the  associated identifying prefix, the date of image capture on field, number of images (instances) and the identified grapes clusters.*
 
 ### What data does each instance consist of? 
 
@@ -90,19 +85,19 @@ format"
 *class* is an integer defining the object class – the dataset presents
 only the grape class that is numbered 0, so every line starts with this
 “class zero” indicator. The center of the bounding box is the point
-$(c_x, c_y)$, represented as float values because this format normalizes
+*(c_x, c_y)*, represented as float values because this format normalizes
 the coordinates by the image dimensions. To get the absolute position,
-use $(2048 \cdot c_x, 1365 \cdot c_y)$. The bounding box dimensions are
-given by $W$ and $H$, also normalized by the image size.
+use *(2048  c_x, 1365  c_y)*. The bounding box dimensions are
+given by *W* and *H*, also normalized by the image size.
 
 The instances presenting mask data for instance segmentation contain
 files presenting the `.npz` extension. These files are compressed
-archives for NumPy $n$-dimensional arrays [@NumPy]. Each array is a
-$H \times W \times n_\mathrm{clusters}$ three-dimensional array where
-$n_\mathrm{clusters}$ is the number of grape clusters observed in the
+archives for NumPy $n$-dimensional arrays. Each array is a
+*H X W X n_clusters* three-dimensional array where
+*n_clusters* is the number of grape clusters observed in the
 image. After assigning the NumPy array to a variable `M`, the mask for
-the $i$-th grape cluster can be found in `M[:,:,i]`. The $i$-th mask
-corresponds to the $i$-th line in the bounding boxes file.
+the *i*-th grape cluster can be found in `M[:,:,i]`. The *i*-th mask
+corresponds to the *i*-th line in the bounding boxes file.
 
 The dataset also includes the original image files, presenting the full
 original resolution. The normalized annotation for bounding boxes allows
@@ -120,19 +115,18 @@ The dataset comes with specified train/test splits. The splits are found
 in lists stored as text files. There are also lists referring only to
 instances presenting binary masks.
 
-\[tab:WGISDSplit\]
+|                       |   Images |  Boxed clusters  | Masked clusters   |
+|  ---------------------| -------- | ---------------- | ----------------- |
+|  Training/Validation  |      242 |           3,582  |           1,612   |
+|  Test                 |       58 |             850  |             408   |
+|  Total                |      300 |           4,432  |           2,020   |
 
-                          Images   Boxed clusters   Masked clusters
-  --------------------- -------- ---------------- -----------------
-  Training/Validation        242            3,582             1,612
-  Test                        58              850               408
-  Total                      300            4,432             2,020
-
-  : Dataset recommended split.
+*Dataset recommended split.*
 
 Standard measures from the information retrieval and computer vision
 literature should be employed: precision and recall, $F_1$ score and
-average precision as seen in COCO [@MSCOCO] and Pascal VOC [@PascalVOC].
+average precision as seen in [COCO](http://cocodataset.org)
+and [Pascal VOC](http://host.robots.ox.ac.uk/pascal/VOC).
 
 ### What experiments were initially run on this dataset? 
 
@@ -157,10 +151,9 @@ used to capture the images. The cameras were located between the vines
 lines, facing the vines at distances around 1-2 meters. The EOS REBEL
 T3i camera captured 240 images, including all *Syrah* pictures. The Z2
 smartphone grabbed 60 images covering all varieties except *Syrah* . The
-REBEL images were scaled to $2048 \times 1365$ pixels and the Z2 images
-to $2048 \times 1536$ pixels (see Section \[sec:WGISDPreProc\]). More
-data about the capture process can be found in the Exif data found in
-the original image files, included in the dataset.
+REBEL images were scaled to *2048 X 1365* pixels and the Z2 images
+to *2048 X 1536* pixels. More data about the capture process can be found 
+in the Exif data found in the original image files, included in the dataset.
 
 ### Who was involved in the data collection process?
 
@@ -180,7 +173,7 @@ incorrectly delimited.
 A subset of the bounding boxes was selected for mask annotation, using a
 novel tool developed by the authors and presented in this work. This
 interactive tool lets the annotator mark grape and background pixels
-using scribbles, and a graph matching algorithm developed by [@Noma2012]
+using scribbles, and a graph matching algorithm developed by [Noma *et al.*](https://doi.org/10.1016/j.patcog.2011.08.017)
 is employed to perform image segmentation to every pixel in the bounding
 box, producing a binary mask representing grape/background
 classification.
@@ -188,14 +181,14 @@ classification.
 Data Preprocessing
 ------------------
 
-### What preprocessing/cleaning was done? {#sec:WGISDPreProc}
+### What preprocessing/cleaning was done? 
 
 The following steps were taken to process the data:
 
 1.  Bounding boxes were annotated for each image using the `labelImg`
     tool.
 
-2.  Images were resized to $W = 2048$ pixels. This resolution proved to
+2.  Images were resized to *W = 2048* pixels. This resolution proved to
     be practical to mask annotation, a convenient balance between grape
     detail and time spent by the graph-based segmentation algorithm.
 
@@ -219,7 +212,7 @@ Dataset Distribution
 
 ### How is the dataset distributed?
 
-The dataset is available at GitHub.
+The dataset is [available at GitHub](https://github.com/thsant/wgisd).
 
 ### When will the dataset be released/first distributed?
 
@@ -227,11 +220,9 @@ The dataset was released in July, 2019.
 
 ### What license (if any) is it distributed under?
 
-The data is released under Creative Commons BY-NC 4.0
-(Attribution-NonCommercial 4.0 International license). There is a
-request to cite the corresponding paper if the dataset is used. For
-commercial use, contact Embrapa Agricultural Informatics business
-office.
+The data is released under **Creative Commons BY-NC 4.0 (Attribution-NonCommercial 4.0 International license)**. 
+There is a request to cite the corresponding paper if the dataset is used. For
+commercial use, contact Embrapa Agricultural Informatics business office.
 
 ### Are there any fees or access/export restrictions?
 
