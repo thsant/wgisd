@@ -1,0 +1,279 @@
+Embrapa Wine Grape Instance Segmentation Dataset – Embrapa WGISD {#appendix:WGISD}
+================================================================
+
+This is a detailed description of the dataset, a
+*datasheet for the dataset* as proposed by Gebru [*et al.*]{}
+[@Gebru2018].
+
+Motivation for Dataset Creation {#sec:org576a247}
+-------------------------------
+
+### Why was the dataset created? {#sec:org6e480f9}
+
+Embrapa WGISD (*Wine Grape Instance Segmentation Dataset*) was created
+to provide images and annotation to study *object detection and instance
+segmentation* for image-based monitoring and field robotics in
+viticulture. It provides instances from five different grape varieties
+taken on field. These instances shows variance in grape pose,
+illumination and focus, including genetic and phenological variations
+such as shape, color and compactness.
+
+### What (other) tasks could the dataset be used for? {#sec:orgfe05c1f}
+
+Possible uses include relaxations of the instance segmentation problem:
+classification (Is a grape in the image?), semantic segmentation (What
+are the “grape pixels” in the image?), and object detection (Where are
+the grapes in the image?). The WGISD can also be used in grape variety
+identification.
+
+### Who funded the creation of the dataset? {#sec:org7c9950e}
+
+The building of the WGISD dataset was supported by the Embrapa SEG
+Project 01.14.09.001.05.04, *Image-based metrology for Precision
+Agriculture and Phenotyping*, and the CNPq PIBIC Program (grants
+161165/2017-6 and 125044/2018-6).
+
+Dataset Composition {#sec:org9163256}
+-------------------
+
+### What are the instances? {#sec:org2c40949}
+
+Each instance consists in a RGB image and an annotation describing grape
+clusters locations as bounding boxes. A subset of the instances also
+contains binary masks identifying the pixels belonging to each grape
+cluster. Each image presents at least one grape cluster. Some grape
+clusters can appear far at the background and should be ignored.
+
+### Are relationships between instances made explicit in the data? {#sec:org30a40eb}
+
+File names prefixes identify the variety observed in the instance.
+
+  Prefix   Variety
+  -------- ----------------------
+  CDY      *Chardonnay*
+  CFR      *Cabernet Franc*
+  CSV      *Cabernet Sauvignon*
+  SVB      *Sauvignon Blanc*
+  SYH      *Syrah*
+
+  : File prefixes and grape varieties.
+
+### How many instances of each type are there? {#sec:orgd3b5757}
+
+The dataset consists of 300 images containing 4,432 grape clusters
+identified by bounding boxes. A subset of 137 images also contains
+binary masks identifying the pixels of each cluster. It means that from
+the 4,432 clusters, 2,020 of them presents binary masks for instance
+segmentation, as summarized in Table \[table:GenInfoData\].
+
+  Prefix   Variety                        Date   Images   Boxed clusters   Masked clusters
+  -------- ---------------------- ------------ -------- ---------------- -----------------
+  CDY      *Chardonnay*             2018-04-27       65              840               308
+  CFR      *Cabernet Franc*         2018-04-27       65            1,069               513
+  CSV      *Cabernet Sauvignon*     2018-04-27       57              643               306
+  SVB      *Sauvignon Blanc*        2018-04-27       65            1,317               608
+  SYH      *Syrah*                  2017-04-27       48              563               285
+  Total                                             300            4,432             2,020
+
+  : General information about the dataset: the grape varieties and the
+  associated identifying prefix, the date of image capture on field,
+  number of images (instances) and the identified grapes
+  clusters.[]{data-label="table:GenInfoData"}
+
+### What data does each instance consist of? {#sec:org3a7677d}
+
+Each instance contains a 8-bits RGB image and a text file containing one
+bounding box description per line. These text files follows the “YOLO
+format” [@Redmon2016]:
+
+    CLASS CX CY W H
+
+*class* is an integer defining the object class – the dataset presents
+only the grape class that is numbered 0, so every line starts with this
+“class zero” indicator. The center of the bounding box is the point
+$(c_x, c_y)$, represented as float values because this format normalizes
+the coordinates by the image dimensions. To get the absolute position,
+use $(2048 \cdot c_x, 1365 \cdot c_y)$. The bounding box dimensions are
+given by $W$ and $H$, also normalized by the image size.
+
+The instances presenting mask data for instance segmentation contain
+files presenting the `.npz` extension. These files are compressed
+archives for NumPy $n$-dimensional arrays [@NumPy]. Each array is a
+$H \times W \times n_\mathrm{clusters}$ three-dimensional array where
+$n_\mathrm{clusters}$ is the number of grape clusters observed in the
+image. After assigning the NumPy array to a variable `M`, the mask for
+the $i$-th grape cluster can be found in `M[:,:,i]`. The $i$-th mask
+corresponds to the $i$-th line in the bounding boxes file.
+
+The dataset also includes the original image files, presenting the full
+original resolution. The normalized annotation for bounding boxes allows
+easy identification of clusters in the original images, but the mask
+data will need to be properly rescaled if users wish to work on the
+original full resolution.
+
+### Is everything included or does the data rely on external resources? {#sec:org9af0525}
+
+Everything is included in the dataset.
+
+### Are there recommended data splits or evaluation measures? {#sec:org4be082b}
+
+The dataset comes with specified train/test splits. The splits are found
+in lists stored as text files. There are also lists referring only to
+instances presenting binary masks.
+
+\[tab:WGISDSplit\]
+
+                          Images   Boxed clusters   Masked clusters
+  --------------------- -------- ---------------- -----------------
+  Training/Validation        242            3,582             1,612
+  Test                        58              850               408
+  Total                      300            4,432             2,020
+
+  : Dataset recommended split.
+
+Standard measures from the information retrieval and computer vision
+literature should be employed: precision and recall, $F_1$ score and
+average precision as seen in COCO [@MSCOCO] and Pascal VOC [@PascalVOC].
+
+### What experiments were initially run on this dataset? {#sec:org4b2d134}
+
+To the present date, this work describe the first experiments run on
+this dataset.
+
+Data Collection Process {#sec:orgb6d3e5e}
+-----------------------
+
+### How was the data collected?
+
+Images were captured at the vineyards of Guaspari Winery, located at
+Espírito Santo do Pinhal, São Paulo, Brazil (Lat -22.181018, Lon
+-46.741618). The winery staff performs dual pruning: one for shaping
+(after previous year harvest) and one for production, resulting in
+canopies of lower density. The image capturing was realized in April
+2017 for *Syrah* and in April 2018 for the other varieties (see
+Table \[table:GenInfoData\]).
+
+A Canon EOS REBEL T3i DSLR camera and a Motorola Z2 Play smartphone were
+used to capture the images. The cameras were located between the vines
+lines, facing the vines at distances around 1-2 meters. The EOS REBEL
+T3i camera captured 240 images, including all *Syrah* pictures. The Z2
+smartphone grabbed 60 images covering all varieties except *Syrah* . The
+REBEL images were scaled to $2048 \times 1365$ pixels and the Z2 images
+to $2048 \times 1536$ pixels (see Section \[sec:WGISDPreProc\]). More
+data about the capture process can be found in the Exif data found in
+the original image files, included in the dataset.
+
+### Who was involved in the data collection process?
+
+The authors of this paper. T. T. Santos, A. A. Santos and S. Avila
+captured the images in field. T. T. Santos, L. L. de Souza and S. Avila
+performed the annotation.
+
+### How was the data associated with each instance acquired?
+
+The rectangular bounding boxes identifying the grape clusters were
+annotated using the `labelImg` tool[^5]. The clusters can be under
+severe occlusion by leaves, trunks or other clusters. Considering the
+absence of 3-D data and on-site annotation, the clusters locations had
+to be defined using only a single-view image, so some clusters could be
+incorrectly delimited.
+
+A subset of the bounding boxes was selected for mask annotation, using a
+novel tool developed by the authors and presented in this work. This
+interactive tool lets the annotator mark grape and background pixels
+using scribbles, and a graph matching algorithm developed by [@Noma2012]
+is employed to perform image segmentation to every pixel in the bounding
+box, producing a binary mask representing grape/background
+classification.
+
+Data Preprocessing
+------------------
+
+### What preprocessing/cleaning was done? {#sec:WGISDPreProc}
+
+The following steps were taken to process the data:
+
+1.  Bounding boxes were annotated for each image using the `labelImg`
+    tool.
+
+2.  Images were resized to $W = 2048$ pixels. This resolution proved to
+    be practical to mask annotation, a convenient balance between grape
+    detail and time spent by the graph-based segmentation algorithm.
+
+3.  A randomly selected subset of images were employed on mask
+    annotation using the interactive tool based on graph matching.
+
+4.  All binaries masks were inspected, in search of pixels attributed to
+    more than one grape cluster. The annotator assigned the disputed
+    pixels to the most likely cluster.
+
+5.  The bounding boxes were fitted to the masks, which provided a fine
+    tuning of grape clusters locations.
+
+### Was the “raw” data saved in addition to the preprocessed data?
+
+The original resolution images, containing the Exif data provided by the
+cameras, is available in the dataset.
+
+Dataset Distribution
+--------------------
+
+### How is the dataset distributed?
+
+The dataset is available at GitHub.
+
+### When will the dataset be released/first distributed?
+
+The dataset was released in July, 2019.
+
+### What license (if any) is it distributed under?
+
+The data is released under Creative Commons BY-NC 4.0
+(Attribution-NonCommercial 4.0 International license). There is a
+request to cite the corresponding paper if the dataset is used. For
+commercial use, contact Embrapa Agricultural Informatics business
+office.
+
+### Are there any fees or access/export restrictions?
+
+There are no fees or restrictions. For commercial use, contact Embrapa
+Agricultural Informatics business office.
+
+Dataset Maintenance
+-------------------
+
+### Who is supporting/hosting/maintaining the dataset?
+
+The dataset is hosted at Embrapa Agricultural Informatics and all
+comments or requests can be sent to Thiago T. Santos at
+`thiago.santos@embrapa.br` (maintainer).
+
+### Will the dataset be updated?
+
+There is no scheduled updates. In case of further updates, releases will
+be properly tagged at GitHub.
+
+### If others want to extend/augment/build on this dataset, is there a mechanism for them to do so?
+
+Contributors should contact the maintainer by e-mail.
+
+### No warranty
+
+The maintainers and their institutions are *exempt from any liability,
+judicial or extrajudicial, for any losses or damages arising from the
+use of the data contained in the image database*.
+
+[^1]: some link
+
+[^2]: Similar to “pepper” noise – see `imgaug` documentation for details
+    [@imgaug].
+
+[^3]: The AP summarizes the shape of the precision/recall curve, and it
+    is defined as the mean precision at a set of equally spaced recall
+    levels. See the Pascal VOC paper for details [@PascalVOC].
+
+[^4]: <https://youtu.be/xkAtVzCIUD4>. Note the video is edited to a 4
+    frames/second rate to allow the viewer follow the tracks more
+    easily.
+
+[^5]: <https://github.com/tzutalin/labelImg>
