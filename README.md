@@ -133,6 +133,8 @@ and [Pascal VOC](http://host.robots.ox.ac.uk/pascal/VOC).
 To the present date, this work describe the first experiments run on
 this dataset.
 
+[![Grape detection, segmentation and tracking](http://img.youtube.com/vi/1Hji3GS4mm4/0.jpg)](http://www.youtube.com/watch?v=1Hji3GS4mm4 "Grape detection, segmentation and tracking")
+
 Data Collection Process 
 -----------------------
 
