@@ -130,8 +130,7 @@ and [Pascal VOC](http://host.robots.ox.ac.uk/pascal/VOC).
 
 ### What experiments were initially run on this dataset? 
 
-To the present date, this work describe the first experiments run on
-this dataset.
+The first experiments run on this dataset are described in [*Grape detection, segmentation and tracking using deep neural networks and three-dimensional association*](https://arxiv.org/abs/1907.11819) by Santos *et al.*. See also the following video demo:
 
 [![Grape detection, segmentation and tracking](http://img.youtube.com/vi/1Hji3GS4mm4/0.jpg)](http://www.youtube.com/watch?v=1Hji3GS4mm4 "Grape detection, segmentation and tracking")
 
