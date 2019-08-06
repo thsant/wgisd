@@ -1,6 +1,8 @@
 Embrapa Wine Grape Instance Segmentation Dataset – Embrapa WGISD 
 ================================================================
 
+[![DOI](https://zenodo.org/badge/199083745.svg)](https://zenodo.org/badge/latestdoi/199083745)
+
 This is a detailed description of the dataset, a
 *datasheet for the dataset* as proposed by [Gebru *et al.*](https://arxiv.org/abs/1803.09010)
 
