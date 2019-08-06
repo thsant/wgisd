@@ -124,7 +124,7 @@ instances presenting binary masks.
 *Dataset recommended split.*
 
 Standard measures from the information retrieval and computer vision
-literature should be employed: precision and recall, $F_1$ score and
+literature should be employed: precision and recall, *F1-score* and
 average precision as seen in [COCO](http://cocodataset.org)
 and [Pascal VOC](http://host.robots.ox.ac.uk/pascal/VOC).
 
