@@ -23,9 +23,10 @@ such as shape, color and compactness.
 
 Possible uses include relaxations of the instance segmentation problem:
 classification (Is a grape in the image?), semantic segmentation (What
-are the "grape pixels" in the image?), and object detection (Where are
-the grapes in the image?). The WGISD can also be used in grape variety
-identification.
+are the "grape pixels" in the image?), object detection (Where are
+the grapes in the image?), and counting (How many berries are there
+per cluster?). The WGISD can also be used in grape variety
+identification. 
 
 ### Who funded the creation of the dataset?
 
@@ -63,7 +64,7 @@ The dataset consists of 300 images containing 4,432 grape clusters
 identified by bounding boxes. A subset of 137 images also contains
 binary masks identifying the pixels of each cluster. It means that from
 the 4,432 clusters, 2,020 of them presents binary masks for instance
-segmentation, as summarized in Table \[table:GenInfoData\].
+segmentation, as summarized in the following table.
 
   |Prefix |  Variety |                       Date |  Images  | Boxed clusters  | Masked clusters|
   | ---   | ---      | ---                        | ---      | ---             | --- |
@@ -75,6 +76,20 @@ segmentation, as summarized in Table \[table:GenInfoData\].
   |Total    |                      |                |   300  |          4,432  |           2,020|
 
   *General information about the dataset: the grape varieties and the  associated identifying prefix, the date of image capture on field, number of images (instances) and the identified grapes clusters.*
+
+Another subset of 111 images with separated and non-occluded grape
+clusters was annotated with point annotations for every berry.
+
+|Prefix |  Variety | Berries |
+| ---   | ---      | ---     |
+|CDY |     *Chardonnay*          | 1,102 |
+|CFR  |    *Cabernet Franc*      | 1,602 |
+|CSV   |   *Cabernet Sauvignon*  | 1,712 |
+|SVB    |  *Sauvignon Blanc*     | 1,974 |
+|SYH     | *Syrah*               | 969  |
+|Total    |                      | 7,359 |
+
+*Berries annotations.*
 
 ### What data does each instance consist of? 
 
@@ -101,6 +116,17 @@ image. After assigning the NumPy array to a variable `M`, the mask for
 the *i*-th grape cluster can be found in `M[:,:,i]`. The *i*-th mask
 corresponds to the *i*-th line in the bounding boxes file.
 
+The berries annotations are following a similar notation with the only 
+exception being that each text file (train/val/test) includes also the 
+instance file name.
+ 
+     FILENAME CLASS CX CY
+ 
+where *filename* stands for instance file name, *class* is an integer 
+defining the object class (0 for all instances) and the point *(c_x, c_y)* 
+indicates the absolute position of each "dot" indicating a single berry in 
+a well defined cluster. 
+
 The dataset also includes the original image files, presenting the full
 original resolution. The normalized annotation for bounding boxes allows
 easy identification of clusters in the original images, but the mask
@@ -124,6 +150,15 @@ instances presenting binary masks.
 |  Total                |      300 |           4,432  |           2,020   |
 
 *Dataset recommended split.*
+
+For the berries annotations:
+
+|                       |   Images |  Boxed clusters  | Masked clusters   |
+|  ---------------------| -------- | ---------------- | ----------------- |
+|  Training/Validation  |      242 |           3,582  |           5,432   |
+|  Test                 |       58 |             850  |           1,927   |
+|  Total                |      300 |           4,432  |           7,359   |
+
 
 Standard measures from the information retrieval and computer vision
 literature should be employed: precision and recall, *F1-score* and
@@ -160,9 +195,15 @@ in the Exif data found in the original image files, included in the dataset.
 
 ### Who was involved in the data collection process?
 
-The authors of this paper. T. T. Santos, A. A. Santos and S. Avila
-captured the images in field. T. T. Santos, L. L. de Souza and S. Avila
-performed the annotation.
+T. T. Santos, A. A. Santos and S. Avila captured the images in
+field. T. T. Santos, L. L. de Souza and S. Avila performed the
+annotation for bounding boxes and masks.
+
+A subset of the bounding boxes of well-defined (separated and non-occluded 
+clusters) was used for "dot" (berry) annotations of each grape to
+serve for counting  applications as described in [Khoroshevsky *et
+al.*](https://doi.org/10.1007/978-3-030-65414-6_19). The berries
+annotation was performed by F._Khoroshevsky and S._Khoroshevsky.
 
 ### How was the data associated with each instance acquired?
 
@@ -243,7 +284,9 @@ comments or requests can be sent to [Thiago T. Santos](https://github.com/thsant
 
 ### Will the dataset be updated?
 
-There is no scheduled updates. In case of further updates, releases will
+There is no scheduled updates. In February, 2021, F._Khoroshevsky and
+S._Khoroshevsky provided the first extension: the berries ("dot")
+annotations. In case of further updates, releases will
 be properly tagged at GitHub.
 
 ### If others want to extend/augment/build on this dataset, is there a mechanism for them to do so?
