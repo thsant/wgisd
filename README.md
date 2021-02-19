@@ -203,7 +203,7 @@ A subset of the bounding boxes of well-defined (separated and non-occluded
 clusters) was used for "dot" (berry) annotations of each grape to
 serve for counting  applications as described in [Khoroshevsky *et
 al.*](https://doi.org/10.1007/978-3-030-65414-6_19). The berries
-annotation was performed by F._Khoroshevsky and S._Khoroshevsky.
+annotation was performed by F. Khoroshevsky and S. Khoroshevsky.
 
 ### How was the data associated with each instance acquired?
 
@@ -284,8 +284,8 @@ comments or requests can be sent to [Thiago T. Santos](https://github.com/thsant
 
 ### Will the dataset be updated?
 
-There is no scheduled updates. In February, 2021, F._Khoroshevsky and
-S._Khoroshevsky provided the first extension: the berries ("dot")
+There is no scheduled updates. In February, 2021, F. Khoroshevsky and
+S. Khoroshevsky provided the first extension: the berries ("dot")
 annotations. In case of further updates, releases will
 be properly tagged at GitHub.
 
