@@ -83,11 +83,11 @@ clusters was annotated with point annotations for every berry.
 |Prefix |  Variety | Berries |
 | ---   | ---      | ---     |
 |CDY |     *Chardonnay*          | 1,102 |
-|CFR  |    *Cabernet Franc*      | 1,602 |
+|CFR  |    *Cabernet Franc*      | 1,592 |
 |CSV   |   *Cabernet Sauvignon*  | 1,712 |
 |SVB    |  *Sauvignon Blanc*     | 1,974 |
 |SYH     | *Syrah*               | 969  |
-|Total    |                      | 7,359 |
+|Total    |                      | 7,349 |
 
 *Berries annotations.*
 
@@ -153,11 +153,11 @@ instances presenting binary masks.
 
 For the berries annotations:
 
-|                       |   Images |  Boxed clusters  | Masked clusters   |
-|  ---------------------| -------- | ---------------- | ----------------- |
-|  Training/Validation  |      242 |           3,582  |           5,432   |
-|  Test                 |       58 |             850  |           1,927   |
-|  Total                |      300 |           4,432  |           7,359   |
+|                       |   Images | Berries | 
+|  ---------------------| -------- | ------- |
+|  Training/Validation  |       86 | 5,422   |  
+|  Test                 |       25 | 1,927   |
+|  Total                |      111 | 7,349   |
 
 
 Standard measures from the information retrieval and computer vision
@@ -181,8 +181,7 @@ Espírito Santo do Pinhal, São Paulo, Brazil (Lat -22.181018, Lon
 -46.741618). The winery staff performs dual pruning: one for shaping
 (after previous year harvest) and one for production, resulting in
 canopies of lower density. The image capturing was realized in April
-2017 for *Syrah* and in April 2018 for the other varieties (see
-Table \[table:GenInfoData\]).
+2017 for *Syrah* and in April 2018 for the other varieties.
 
 A Canon EOS REBEL T3i DSLR camera and a Motorola Z2 Play smartphone were
 used to capture the images. The cameras were located between the vines
@@ -208,7 +207,8 @@ annotation was performed by F. Khoroshevsky and S. Khoroshevsky.
 ### How was the data associated with each instance acquired?
 
 The rectangular bounding boxes identifying the grape clusters were
-annotated using the [`labelImg` tool](https://github.com/tzutalin/labelImg). The clusters can be under
+annotated using the [`labelImg` tool](https://github.com/tzutalin/labelImg).
+The clusters can be under
 severe occlusion by leaves, trunks or other clusters. Considering the
 absence of 3-D data and on-site annotation, the clusters locations had
 to be defined using only a single-view image, so some clusters could be
