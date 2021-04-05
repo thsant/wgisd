@@ -171,6 +171,8 @@ The first experiments run on this dataset are described in [*Grape detection, se
 
 [![Grape detection, segmentation and tracking](http://img.youtube.com/vi/1Hji3GS4mm4/0.jpg)](http://www.youtube.com/watch?v=1Hji3GS4mm4 "Grape detection, segmentation and tracking")
 
+**UPDATE**: The JPG files corresponding to the video frames in the [video demo](http://www.youtube.com/watch?v=1Hji3GS4mm4) are now available in the `extras` directory.
+
 Data Collection Process 
 -----------------------
 
