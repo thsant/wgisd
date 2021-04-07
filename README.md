@@ -77,8 +77,10 @@ segmentation, as summarized in the following table.
 
   *General information about the dataset: the grape varieties and the  associated identifying prefix, the date of image capture on field, number of images (instances) and the identified grapes clusters.*
 
+#### Contributions
+
 Another subset of 111 images with separated and non-occluded grape
-clusters was annotated with point annotations for every berry.
+clusters was annotated with point annotations for every berry by F. Khoroshevsky and S. Khoroshevsky ([Khoroshevsky *et al.*, 2021](https://doi.org/10.1007/978-3-030-65414-6_19)). Theses annotations are available in `test_berries.txt` , `train_berries.txt` and `val_berries.txt`
 
 |Prefix |  Variety | Berries |
 | ---   | ---      | ---     |
@@ -89,7 +91,9 @@ clusters was annotated with point annotations for every berry.
 |SYH     | *Syrah*               | 969  |
 |Total    |                      | 7,349 |
 
-*Berries annotations.*
+*Berries annotations by F. Khoroshevsky and S. Khoroshevsky.*
+
+Cheng Deng ([Deng *et al.*, 2020](https://doi.org/10.1007/978-3-030-63820-7_66)) provided point-based annotations for berries in all 300 images, summing 187,374 berries. These annotations are available in `contrib/berries`.
 
 ### What data does each instance consist of? 
 
@@ -116,6 +120,16 @@ image. After assigning the NumPy array to a variable `M`, the mask for
 the *i*-th grape cluster can be found in `M[:,:,i]`. The *i*-th mask
 corresponds to the *i*-th line in the bounding boxes file.
 
+The dataset also includes the original image files, presenting the full
+original resolution. The normalized annotation for bounding boxes allows
+easy identification of clusters in the original images, but the mask
+data will need to be properly rescaled if users wish to work on the
+original full resolution.
+
+#### Contributions
+
+*For `test_berries.txt` , `train_berries.txt` and `val_berries.txt`*:
+
 The berries annotations are following a similar notation with the only 
 exception being that each text file (train/val/test) includes also the 
 instance file name.
@@ -127,11 +141,13 @@ defining the object class (0 for all instances) and the point *(c_x, c_y)*
 indicates the absolute position of each "dot" indicating a single berry in 
 a well defined cluster. 
 
-The dataset also includes the original image files, presenting the full
-original resolution. The normalized annotation for bounding boxes allows
-easy identification of clusters in the original images, but the mask
-data will need to be properly rescaled if users wish to work on the
-original full resolution.
+*For `contrib/berries`*:
+
+The annotations provide the *(x, y)* point position for each berry center, in a tabular form:
+
+     X Y
+     
+These point-based annotations can be easily loaded using, for example, `numpy.loadtxt`. See `WGISD.ipynb`for examples.
 
 ### Is everything included or does the data rely on external resources? 
 
@@ -150,14 +166,6 @@ instances presenting binary masks.
 |  Total                |      300 |           4,431  |           2,020   |
 
 *Dataset recommended split.*
-
-For the berries annotations:
-
-|                       |   Images | Berries | 
-|  ---------------------| -------- | ------- |
-|  Training/Validation  |       86 | 5,422   |  
-|  Test                 |       25 | 1,927   |
-|  Total                |      111 | 7,349   |
 
 
 Standard measures from the information retrieval and computer vision
@@ -200,12 +208,6 @@ T. T. Santos, A. A. Santos and S. Avila captured the images in
 field. T. T. Santos, L. L. de Souza and S. Avila performed the
 annotation for bounding boxes and masks.
 
-A subset of the bounding boxes of well-defined (separated and non-occluded 
-clusters) was used for "dot" (berry) annotations of each grape to
-serve for counting  applications as described in [Khoroshevsky *et
-al.*](https://doi.org/10.1007/978-3-030-65414-6_19). The berries
-annotation was performed by F. Khoroshevsky and S. Khoroshevsky.
-
 ### How was the data associated with each instance acquired?
 
 The rectangular bounding boxes identifying the grape clusters were
@@ -223,6 +225,20 @@ using scribbles, and a graph matching algorithm developed by [Noma *et al.*](htt
 is employed to perform image segmentation to every pixel in the bounding
 box, producing a binary mask representing grape/background
 classification.
+
+#### Contributions
+
+A subset of the bounding boxes of well-defined (separated and non-occluded 
+clusters) was used for "dot" (berry) annotations of each grape to
+serve for counting  applications as described in [Khoroshevsky *et
+al.*](https://doi.org/10.1007/978-3-030-65414-6_19). The berries
+annotation was performed by F. Khoroshevsky and S. Khoroshevsky.
+
+Cheng Deng ([Deng *et al.*, 2020](https://doi.org/10.1007/978-3-030-63820-7_66))
+provided point-based annotations for berries in all 300 images, summing 
+187,374 berries. These annotations are available in `contrib/berries`. 
+Deng *et al.* employed [Huawei ModelArt](https://www.huaweicloud.com/en-us/product/modelarts.html), 
+for their annotation effort.
 
 Data Preprocessing
 ------------------
@@ -291,8 +307,8 @@ There is no scheduled updates.
 * In February, 2021, F. Khoroshevsky and S. Khoroshevsky provided the first extension: the berries ("dot")
 annotations. 
 
-* In April, 2021, Cheng Deng (School of Computer Science, Sichuan University, Chengdu, China) provided point annotations for berries. T. Santos converted Deng's XML files to easier-to-load text files now available in `contrib/berries` directory.
-
+* In April, 2021, Cheng Deng provided point annotations for berries. T. Santos converted Deng's XML files to 
+easier-to-load text files now available in `contrib/berries` directory.
 
 In case of further updates, releases will be properly tagged at GitHub.
 
