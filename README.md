@@ -71,9 +71,9 @@ segmentation, as summarized in the following table.
   |CDY |     *Chardonnay*          |   2018-04-27   |    65  |            840  |             308|
   |CFR  |    *Cabernet Franc*      |   2018-04-27   |    65  |          1,069  |             513|
   |CSV   |   *Cabernet Sauvignon*  |   2018-04-27   |    57  |            643  |             306|
-  |SVB    |  *Sauvignon Blanc*     |   2018-04-27   |    65  |          1,317  |             608|
+  |SVB    |  *Sauvignon Blanc*     |   2018-04-27   |    65  |          1,316  |             608|
   |SYH     | *Syrah*               |   2017-04-27   |    48  |            563  |             285|
-  |Total    |                      |                |   300  |          4,432  |           2,020|
+  |Total    |                      |                |   300  |          4,431  |           2,020|
 
   *General information about the dataset: the grape varieties and the  associated identifying prefix, the date of image capture on field, number of images (instances) and the identified grapes clusters.*
 
@@ -145,9 +145,9 @@ instances presenting binary masks.
 
 |                       |   Images |  Boxed clusters  | Masked clusters   |
 |  ---------------------| -------- | ---------------- | ----------------- |
-|  Training/Validation  |      242 |           3,582  |           1,612   |
+|  Training/Validation  |      242 |           3,581  |           1,612   |
 |  Test                 |       58 |             850  |             408   |
-|  Total                |      300 |           4,432  |           2,020   |
+|  Total                |      300 |           4,431  |           2,020   |
 
 *Dataset recommended split.*
 
@@ -286,10 +286,15 @@ comments or requests can be sent to [Thiago T. Santos](https://github.com/thsant
 
 ### Will the dataset be updated?
 
-There is no scheduled updates. In February, 2021, F. Khoroshevsky and
-S. Khoroshevsky provided the first extension: the berries ("dot")
-annotations. In case of further updates, releases will
-be properly tagged at GitHub.
+There is no scheduled updates. 
+
+* In February, 2021, F. Khoroshevsky and S. Khoroshevsky provided the first extension: the berries ("dot")
+annotations. 
+
+* In April, 2021, Cheng Deng (School of Computer Science, Sichuan University, Chengdu, China) provided point annotations for berries. T. Santos converted Deng's XML files to easier-to-load text files now available in `contrib/berries` directory.
+
+
+In case of further updates, releases will be properly tagged at GitHub.
 
 ### If others want to extend/augment/build on this dataset, is there a mechanism for them to do so?
 
