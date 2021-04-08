@@ -92,8 +92,9 @@ clusters was annotated with point annotations for every berry by F. Khoroshevsky
 |Total    |                      | 7,349 |
 
 *Berries annotations by F. Khoroshevsky and S. Khoroshevsky.*
-
-Cheng Deng ([Deng *et al.*, 2020](https://doi.org/10.1007/978-3-030-63820-7_66)) provided point-based annotations for berries in all 300 images, summing 187,374 berries. These annotations are available in `contrib/berries`.
+Geng Deng ([Deng *et al.*, 2020](https://doi.org/10.1007/978-3-030-63820-7_66)) 
+provided point-based annotations for berries in all 300 images, summing 187,374 berries. 
+These annotations are available in `contrib/berries`.
 
 ### What data does each instance consist of? 
 
@@ -234,7 +235,7 @@ serve for counting  applications as described in [Khoroshevsky *et
 al.*](https://doi.org/10.1007/978-3-030-65414-6_19). The berries
 annotation was performed by F. Khoroshevsky and S. Khoroshevsky.
 
-Cheng Deng ([Deng *et al.*, 2020](https://doi.org/10.1007/978-3-030-63820-7_66))
+Geng Deng ([Deng *et al.*, 2020](https://doi.org/10.1007/978-3-030-63820-7_66))
 provided point-based annotations for berries in all 300 images, summing 
 187,374 berries. These annotations are available in `contrib/berries`. 
 Deng *et al.* employed [Huawei ModelArt](https://www.huaweicloud.com/en-us/product/modelarts.html), 
