@@ -308,7 +308,7 @@ There is no scheduled updates.
 * In February, 2021, F. Khoroshevsky and S. Khoroshevsky provided the first extension: the berries ("dot")
 annotations. 
 
-* In April, 2021, Cheng Deng provided point annotations for berries. T. Santos converted Deng's XML files to 
+* In April, 2021, Geng Deng provided point annotations for berries. T. Santos converted Deng's XML files to 
 easier-to-load text files now available in `contrib/berries` directory.
 
 In case of further updates, releases will be properly tagged at GitHub.
