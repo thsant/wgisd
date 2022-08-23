@@ -96,6 +96,9 @@ Geng Deng ([Deng *et al.*, 2020](https://doi.org/10.1007/978-3-030-63820-7_66))
 provided point-based annotations for berries in all 300 images, summing 187,374 berries. 
 These annotations are available in `contrib/berries`.
 
+Daniel Angelov (@23pointsNorth) provided a version for the annotations in [COCO format](https://cocodataset.org/#format-data). See `coco_annotations` directory.
+
+
 ### What data does each instance consist of? 
 
 Each instance contains a 8-bits RGB image and a text file containing one
@@ -149,6 +152,10 @@ The annotations provide the *(x, y)* point position for each berry center, in a 
      X Y
      
 These point-based annotations can be easily loaded using, for example, `numpy.loadtxt`. See `WGISD.ipynb`for examples.
+
+
+Daniel Angelov (@23pointsNorth) provided a version for the annotations in [COCO format](https://cocodataset.org/#format-data). See `coco_annotations` directory. Also see [COCO format](https://cocodataset.org/#format-data) for the JSON-based format.
+
 
 ### Is everything included or does the data rely on external resources? 
 
@@ -304,6 +311,8 @@ comments or requests can be sent to [Thiago T. Santos](https://github.com/thsant
 ### Will the dataset be updated?
 
 There is no scheduled updates. 
+
+* In May, 2022, Daniel Angelov (@23pointsNorth) provided a version for the annotations in [COCO format](https://cocodataset.org/#format-data). See `coco_annotations` directory.
 
 * In February, 2021, F. Khoroshevsky and S. Khoroshevsky provided the first extension: the berries ("dot")
 annotations. 
