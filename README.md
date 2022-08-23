@@ -154,7 +154,7 @@ The annotations provide the *(x, y)* point position for each berry center, in a 
 These point-based annotations can be easily loaded using, for example, `numpy.loadtxt`. See `WGISD.ipynb`for examples.
 
 
-Daniel Angelov (@23pointsNorth) provided a version for the annotations in [COCO format](https://cocodataset.org/#format-data). See `coco_annotations` directory. Also see [COCO format](https://cocodataset.org/#format-data) for the JSON-based format.
+[Daniel Angelov (@23pointsNorth)](https://github.com/23pointsNorth) provided a version for the annotations in [COCO format](https://cocodataset.org/#format-data). See `coco_annotations` directory. Also see [COCO format](https://cocodataset.org/#format-data) for the JSON-based format.
 
 
 ### Is everything included or does the data rely on external resources? 
@@ -312,7 +312,7 @@ comments or requests can be sent to [Thiago T. Santos](https://github.com/thsant
 
 There is no scheduled updates. 
 
-* In May, 2022, Daniel Angelov (@23pointsNorth) provided a version for the annotations in [COCO format](https://cocodataset.org/#format-data). See `coco_annotations` directory.
+* In May, 2022, [Daniel Angelov (@23pointsNorth)](https://github.com/23pointsNorth) provided a version for the annotations in [COCO format](https://cocodataset.org/#format-data). See `coco_annotations` directory.
 
 * In February, 2021, F. Khoroshevsky and S. Khoroshevsky provided the first extension: the berries ("dot")
 annotations. 
